@@ -28,7 +28,7 @@ export default class PuntoDeVenta extends Component {
               <option value="opcion4" />
             </datalist>
           </div>
-          <div>
+          <div> 
             <table>
               <tbody><tr>
                   <td>U.M.V</td>
