@@ -4,13 +4,13 @@ const Sidebar = () => {
     return (
         <aside className="main-sidebar sidebar-dark-primary elevation-4">
             <a href="#" className="brand-link">
-                <img src={process.env.PUBLIC_URL+'/dist/img/AdminLTELogo.png'} alt="Cloud Sales Logo" className="brand-image img-circle elevation-3" style={{opacity: '.8'}} />
+                <img src={process.env.PUBLIC_URL+'/dist/img/logo-INACAP.jpg'} alt="Cloud Sales Logo" className="brand-image img-circle elevation-3" style={{opacity: '.8'}} />
                 <span className="brand-text font-weight-light">Cloud Sales</span>
             </a>
             <div className="sidebar">
                 <div className="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div className="image">
-                        <img src={process.env.PUBLIC_URL+'/dist/img/user2-160x160.jpg'} className="img-circle elevation-2" />
+                        <img src={process.env.PUBLIC_URL+'/dist/img/Panza.jpeg'} className="img-circle elevation-2" />
                     </div>
                     <div className="info">
                         <span className="d-block">Kevin Vega</span>
