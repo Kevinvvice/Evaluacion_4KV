@@ -18,7 +18,7 @@ const ProductsAdmin = () => {
         fetch(config.apiURL+"products/"+config.operatorId, requestOptions).then((response) => {
             return response.json();
         }).then((result) => {
-            //this.setState({ productList: result.data.map((product) => { return product; }) });
+            // this.setState({ productList: result.data.map((product) => { return product; }) });
             let productList = result.data.map((product) => { return product; });
             let rowData;
             if(productList.length === 0){
@@ -104,7 +104,7 @@ const ProductsAdmin = () => {
                     <div className="container-fluid">
                         <div className="row mb-2">
                             <div className="col-sm-6">
-                                <h1>Productos</h1>
+                                <h1>Panel de Ventas</h1>
                             </div>
                             <div className="col-sm-6">
                                 <ol className="breadcrumb float-sm-right">

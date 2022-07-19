@@ -18,11 +18,11 @@ const ClientsAdmin = () => {
         fetch(config.apiURL+"clients/"+config.operatorId, requestOptions).then((response) => {
             return response.json();
         }).then((result) => {
-            //this.setState({ clientList: result.data.map((client) => { return client; }) });
+            // this.setState({ clientList: result.data.map((client) => { return client; }) });
             let clientList = result.data.map((client) => { return client; });
             let rowData;
             if(clientList.length === 0){
-                rowData = (<tr><td colSpan="4" className="text-center">No existen clientes</td></tr>);
+                rowData = (<tr><td colSpan="4" className="text-center">No existen productos</td></tr>);
             } else {
                 rowData = clientList.map(c => {
                     let button;
@@ -33,7 +33,7 @@ const ClientsAdmin = () => {
                     }
                     
                     return (<tr>
-                        <td>{c.name}</td><td className="text-right">${c.name}</td><td className="text-right">{c.rol}</td>
+                        <td>{c.name}</td>
                         <td className="d-flex justify-content-between">
                             {button}
                             <button className="btn btn-warning" onClick={() => edit(c)}><i className="fas fa-pencil"></i> Editar</button>
@@ -50,7 +50,7 @@ const ClientsAdmin = () => {
             const requestOptionsPatch = {
                 method: 'PUT', headers: { 'Content-Type': 'application/json'}, body: JSON.stringify({
                     operatorId: config.operatorId,
-                    name: client.name,                 
+                    name: client.name,
                     active: false
                 })
             };
@@ -80,8 +80,8 @@ const ClientsAdmin = () => {
         }
     }
     const edit = (client) => {
-        let clientsData = JSON.stringify(client);
-        sessionStorage.setItem("client", clientsData);
+        let clientData = JSON.stringify(client);
+        sessionStorage.setItem("client", clientData);
         navigate("/clients/edit");
     }
     
@@ -94,12 +94,12 @@ const ClientsAdmin = () => {
                     <div className="container-fluid">
                         <div className="row mb-2">
                             <div className="col-sm-6">
-                                <h1>Panel de Clientes</h1>
+                                <h1>Panel de Ventas</h1>
                             </div>
                             <div className="col-sm-6">
                                 <ol className="breadcrumb float-sm-right">
                                     <li className="breadcrumb-item"><a href="/">Cloud Sales</a></li>
-                                    <li className="breadcrumb-item active">Clientes</li>
+                                    <li className="breadcrumb-item active">Productos</li>
                                 </ol>
                             </div>
                         </div>
@@ -115,8 +115,7 @@ const ClientsAdmin = () => {
                                     <table className="table">
                                         <thead>
                                             <tr>
-                                                <th>Nombre Cliente</th>
-                                                
+                                                <th>Nombre</th>
                                             </tr>
                                         </thead>
                                         <tbody>

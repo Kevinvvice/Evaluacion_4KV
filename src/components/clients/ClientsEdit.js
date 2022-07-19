@@ -6,10 +6,10 @@ import config from './../../helpers/config.json';
 
 const ClientsEdit = () => {
     let navigate = useNavigate();
-    let clientsData = JSON.parse(sessionStorage.getItem("client")); 
+    let clientData = JSON.parse(sessionStorage.getItem("product")); 
     const cancel = () => {
-        var {clientsName, rol} = document.forms[0]; 
-        var hasChanges = clientsName.value.length > 0 ||  rol.value.length > 0 ;
+        var {clientName} = document.forms[0]; 
+        var hasChanges = clientName.value.length > 0;
         if(hasChanges){
             if(window.confirm("Existen cambios sin guardar. ¿Seguro de querer cancelar?")){
                 navigate("/clients");
@@ -21,18 +21,19 @@ const ClientsEdit = () => {
 
     const save = async (event) => {
         event.preventDefault();
-        var {clientsName} = document.forms[0];
+        var {clientName} = document.forms[0];
         var errors = "";
-        errors += parseInt(clientsName.value) < 0 ? "Tiene que ingresar un Nombre.\n": "";
+       
+        errors += parseInt(clientName.value) > 0 ? "Debe agregar un nombre.\n": "";
         if(errors.length > 0){
             window.alert("Corrija los siguientes errores:\n"+errors);
         } else {
             const requestOptions = {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json'},
-                body: JSON.stringify({ "operatorId": config.operatorId, "name": clientsName.value, "active": clientsData.active})
+                body: JSON.stringify({ "operatorId": config.operatorId, "name": clientName.value, "active": clientData.active})
               }
-              fetch(config.apiURL+"clients/"+clientsData.id, requestOptions).then((response) => {
+              fetch(config.apiURL+"clients/"+clientData.id, requestOptions).then((response) => {
                 switch(response.status){
                   case 400:
                     console.log("consulta mal formada");
@@ -58,12 +59,12 @@ const ClientsEdit = () => {
                     <div className="container-fluid">
                         <div className="row mb-2">
                             <div className="col-sm-6">
-                                <h1>Editar clientes</h1>
+                                <h1>Incorporación de Producto</h1>
                             </div>
                             <div className="col-sm-6">
                                 <ol className="breadcrumb float-sm-right">
                                     <li className="breadcrumb-item"><a href="/">Cloud Sales</a></li>
-                                    <li className="breadcrumb-item"><a href="/clients">Clientes</a></li>
+                                    <li className="breadcrumb-item"><a href="/clients">Productos</a></li>
                                     <li className="breadcrumb-item active">Agregar</li>
                                 </ol>
                             </div>
@@ -77,14 +78,10 @@ const ClientsEdit = () => {
                             <div className="row">
                                 <div className="col-12">
                                     <div className="form-group">
-                                        <label htmlFor="clientsName" className="control-label">Nombre</label>
-                                        <input type="text" name="clientsName" id="clientsName" className="form-control" defaultValue={clientsData.name} required />
+                                        <label htmlFor="productName" className="control-label">Nombre</label>
+                                        <input type="text" name="productName" id="productName" className="form-control" defaultValue={clientData.name} required />
                                     </div>
                                 </div>
-                               
-                                
-                                
-                                
                             </div>
                             <div className="d-flex justify-content-between">
                                 <button type="button" onClick={cancel} className="btn btn-secondary"><i className="fas fa-times"></i> Cancelar</button>
